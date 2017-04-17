@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">HueMan</string>
     <string name="title_activity_hue">HueMan</string>
-	<string name="title_fragment_lightswitch">Toggle Lights</string>
-	<string name="title_fragment_scene">Manage scenes</string>
+	<string name="title_fragment_lights">Toggle Lights</string>
+	<string name="title_fragment_scenes">Manage scenes</string>
 </resources>

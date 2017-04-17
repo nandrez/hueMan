@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2017. nandrez labs, All Rights Reserved
  */
-package com.nandrez.hueman.ui.components.tabs;
+package com.nandrez.hueman.ui.components;
 
 import android.app.Fragment;
 import android.content.res.Resources;
