@@ -3,10 +3,9 @@
  */
 package com.nandrez.hueman.ui.lights.domain.model;
 
-import com.nandrez.hueman.data.Dimmable;
-import com.nandrez.hueman.data.Hueable;
+import com.nandrez.hueman.data.LightSource;
 
-public class Light implements Dimmable, Hueable {
+public class Light implements LightSource {
     
     private boolean isOn;
     private int brightness;
@@ -28,11 +27,19 @@ public class Light implements Dimmable, Hueable {
     
     @Override
     public int getBrightness() {
-        return isOn ? brightness : 0;
+        return brightness;
     }
     
     @Override
     public void setBrightness(int brightness) {
+        if (brightness < MIN_BRIGHTNESS) {
+            this.brightness = MIN_BRIGHTNESS;
+            return;
+        }
+        if (brightness > MAX_BRIGHTNESS) {
+            this.brightness = MAX_BRIGHTNESS;
+            return;
+        }
         this.brightness = brightness;
     }
     

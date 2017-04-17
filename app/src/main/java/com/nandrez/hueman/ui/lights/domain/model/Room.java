@@ -4,23 +4,23 @@
 package com.nandrez.hueman.ui.lights.domain.model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import com.nandrez.hueman.data.Dimmable;
 import com.nandrez.hueman.data.Hueable;
+import com.nandrez.hueman.data.LightSource;
 
 public class Room implements Dimmable, Hueable {
     
-    private List<Light> lights;
+    private List<LightSource> lightSources;
     
     public Room() {
-        lights = new ArrayList<>();
+        lightSources = new ArrayList<>();
     }
     
     @Override
     public boolean isOn() {
-        for (Light light : lights) {
+        for (LightSource light : lightSources) {
             if (light.isOn()) {
                 return true;
             }
@@ -30,48 +30,49 @@ public class Room implements Dimmable, Hueable {
     
     @Override
     public void on() {
-        for (Light light : lights) {
-            light.off();
+        for (LightSource light : lightSources) {
+            light.on();
         }
     }
     
     @Override
     public void off() {
-        for (Light light : lights) {
+        for (LightSource light : lightSources) {
             light.off();
         }
     }
     
     @Override
     public int getBrightness() {
-        if (lights.isEmpty()) {
+        if (lightSources.isEmpty()) {
             return 0;
         }
-        
         int average = 0;
-        for (Light light : lights) {
-            average += light.getBrightness();
+        for (LightSource light : lightSources) {
+            average += light.isOn() ? light.getBrightness() : 0;
         }
-        return Math.round(average / lights.size());
+        return average / lightSources.size();
     }
     
     @Override
     public void setBrightness(int brightness) {
-        for (Light light : lights) {
+        for (LightSource light : lightSources) {
             light.setBrightness(brightness);
         }
     }
     
     @Override
     public Object getHue() {
-        throw new RuntimeException("not yet implemented!");
+        throw new NullPointerException("not yet implemented!");
     }
     
     @Override
     public void setHue(Object hue) {
-        for (Light light : lights) {
-            light.setHue(hue);
-        }
+        throw new RuntimeException("not yet implemented!");
+    }
+    
+    public void addLightSource(LightSource lightSource) {
+        lightSources.add(lightSource);
     }
     
 }
