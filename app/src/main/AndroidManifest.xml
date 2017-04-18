@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
         <activity
-            android:name=".ui.HueManActivity"
+            android:name=".HueManActivity"
             android:label="@string/title_activity_hue">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

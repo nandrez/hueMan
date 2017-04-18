@@ -1,24 +1,26 @@
 /*
  * Copyright (c) 2017. nandrez labs, All Rights Reserved
  */
-package com.nandrez.hueman.ui.lights.domain.model;
+package com.nandrez.hueman.view.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nandrez.hueman.data.Dimmable;
+import com.nandrez.hueman.data.Hueable;
 import com.nandrez.hueman.data.LightSource;
 
-public class Lamp implements LightSource {
+public class Room implements Dimmable, Hueable {
     
-    private List<Light> lights;
+    private List<LightSource> lightSources;
     
-    public Lamp() {
-        this.lights = new ArrayList<>();
+    public Room() {
+        lightSources = new ArrayList<>();
     }
     
     @Override
     public boolean isOn() {
-        for (LightSource light : lights) {
+        for (LightSource light : lightSources) {
             if (light.isOn()) {
                 return true;
             }
@@ -28,33 +30,33 @@ public class Lamp implements LightSource {
     
     @Override
     public void on() {
-        for (LightSource light : lights) {
+        for (LightSource light : lightSources) {
             light.on();
         }
     }
     
     @Override
     public void off() {
-        for (LightSource light : lights) {
+        for (LightSource light : lightSources) {
             light.off();
         }
     }
     
     @Override
     public int getBrightness() {
-        if (lights.isEmpty()) {
+        if (lightSources.isEmpty()) {
             return 0;
         }
         int average = 0;
-        for (LightSource light : lights) {
+        for (LightSource light : lightSources) {
             average += light.isOn() ? light.getBrightness() : 0;
         }
-        return Math.round(average / lights.size());
+        return average / lightSources.size();
     }
     
     @Override
     public void setBrightness(int brightness) {
-        for (LightSource light : lights) {
+        for (LightSource light : lightSources) {
             light.setBrightness(brightness);
         }
     }
@@ -69,8 +71,8 @@ public class Lamp implements LightSource {
         throw new RuntimeException("not yet implemented!");
     }
     
-    public void addLight(Light light) {
-        lights.add(light);
+    public void addLightSource(LightSource lightSource) {
+        lightSources.add(lightSource);
     }
     
 }

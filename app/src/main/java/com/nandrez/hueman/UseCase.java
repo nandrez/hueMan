@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2017. nandrez labs, All Rights Reserved
  */
-package com.nandrez.hueman.ui;
+package com.nandrez.hueman;
 
 /**
  * Use cases are the entry points to the domain layer.

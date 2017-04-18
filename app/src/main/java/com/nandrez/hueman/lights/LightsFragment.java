@@ -1,16 +1,15 @@
 /*
  * Copyright (c) 2017. nandrez labs, All Rights Reserved
  */
-package com.nandrez.hueman.ui.lights;
+package com.nandrez.hueman.lights;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.nandrez.hueman.R;
-import com.nandrez.hueman.ui.components.TabFragment;
+import com.nandrez.hueman.view.components.TabFragment;
 
 public class LightsFragment extends TabFragment implements LightsContract.View {
     

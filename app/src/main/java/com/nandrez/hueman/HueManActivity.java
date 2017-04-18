@@ -1,23 +1,15 @@
 /*
  * Copyright (c) 2017. nandrez labs, All Rights Reserved
  */
-package com.nandrez.hueman.ui;
+package com.nandrez.hueman;
 
-import java.util.ArrayList;
-import java.util.List;
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-
-import com.nandrez.hueman.R;
-import com.nandrez.hueman.ui.components.TabFragmentAdapter;
-import com.nandrez.hueman.ui.lights.LightsFragment;
-import com.nandrez.hueman.ui.scenes.ScenesFragment;
-import com.nandrez.hueman.ui.components.TabFragment;
+import com.nandrez.hueman.lights.LightsFragment;
+import com.nandrez.hueman.scenes.ScenesFragment;
+import com.nandrez.hueman.view.components.TabFragmentAdapter;
 
 public class HueManActivity extends Activity {
     

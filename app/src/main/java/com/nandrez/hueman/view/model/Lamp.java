@@ -1,26 +1,24 @@
 /*
  * Copyright (c) 2017. nandrez labs, All Rights Reserved
  */
-package com.nandrez.hueman.ui.lights.domain.model;
+package com.nandrez.hueman.view.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nandrez.hueman.data.Dimmable;
-import com.nandrez.hueman.data.Hueable;
 import com.nandrez.hueman.data.LightSource;
 
-public class Room implements Dimmable, Hueable {
+public class Lamp implements LightSource {
     
-    private List<LightSource> lightSources;
+    private List<Light> lights;
     
-    public Room() {
-        lightSources = new ArrayList<>();
+    public Lamp() {
+        this.lights = new ArrayList<>();
     }
     
     @Override
     public boolean isOn() {
-        for (LightSource light : lightSources) {
+        for (LightSource light : lights) {
             if (light.isOn()) {
                 return true;
             }
@@ -30,33 +28,33 @@ public class Room implements Dimmable, Hueable {
     
     @Override
     public void on() {
-        for (LightSource light : lightSources) {
+        for (LightSource light : lights) {
             light.on();
         }
     }
     
     @Override
     public void off() {
-        for (LightSource light : lightSources) {
+        for (LightSource light : lights) {
             light.off();
         }
     }
     
     @Override
     public int getBrightness() {
-        if (lightSources.isEmpty()) {
+        if (lights.isEmpty()) {
             return 0;
         }
         int average = 0;
-        for (LightSource light : lightSources) {
+        for (LightSource light : lights) {
             average += light.isOn() ? light.getBrightness() : 0;
         }
-        return average / lightSources.size();
+        return Math.round(average / lights.size());
     }
     
     @Override
     public void setBrightness(int brightness) {
-        for (LightSource light : lightSources) {
+        for (LightSource light : lights) {
             light.setBrightness(brightness);
         }
     }
@@ -71,8 +69,8 @@ public class Room implements Dimmable, Hueable {
         throw new RuntimeException("not yet implemented!");
     }
     
-    public void addLightSource(LightSource lightSource) {
-        lightSources.add(lightSource);
+    public void addLight(Light light) {
+        lights.add(light);
     }
     
 }
