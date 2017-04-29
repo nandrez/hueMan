@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	<declare-styleable name="control_light">
+		<attr name="id" format="integer" />
+		<attr name="name" format="string" />
+		<attr name="lightswitch" format="boolean" />
+		<attr name="brightness" format="integer" />
+		<attr name="hue" format="color" />
+	</declare-styleable>
+	
+</resources>
