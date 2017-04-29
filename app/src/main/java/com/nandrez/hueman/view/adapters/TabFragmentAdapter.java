@@ -1,13 +1,14 @@
 /*
  * Copyright (c) 2017. nandrez labs, All Rights Reserved
  */
-package com.nandrez.hueman.view.components;
+package com.nandrez.hueman.view.adapters;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.FragmentManager;
 import android.support.v13.app.FragmentPagerAdapter;
+import com.nandrez.hueman.view.components.TabFragment;
 
 public class TabFragmentAdapter extends FragmentPagerAdapter {
     
