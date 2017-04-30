@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
 import com.nandrez.hueman.lights.LightsFragment;
+import com.nandrez.hueman.lights.LightsPresenter;
 import com.nandrez.hueman.scenes.ScenesFragment;
 import com.nandrez.hueman.view.adapters.TabFragmentAdapter;
 
@@ -29,6 +30,8 @@ public class HueManActivity extends Activity {
         tabFragmentAdapter = new TabFragmentAdapter(getFragmentManager());
         
         LightsFragment lightsTab = new LightsFragment();
+        LightsPresenter lightsPresenter = new LightsPresenter(lightsTab);
+        lightsTab.setPresenter(lightsPresenter);
         tabFragmentAdapter.addItem(lightsTab, getString(R.string.title_fragment_lights));
         ScenesFragment scenesTab = new ScenesFragment();
         tabFragmentAdapter.addItem(scenesTab, getString(R.string.title_fragment_scenes));
