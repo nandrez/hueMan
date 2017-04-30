@@ -13,11 +13,19 @@ import android.view.ViewGroup;
 
 import com.nandrez.hueman.R;
 import com.nandrez.hueman.data.LightSource;
+import com.nandrez.hueman.view.adapters.LightSourceAdapter;
 import com.nandrez.hueman.view.components.TabFragment;
 
 public class LightsFragment extends TabFragment implements LightsContract.View {
     
     private LightsContract.Presenter presenter;
+    private LightSourceAdapter lightSourceAdapter;
+    
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        lightSourceAdapter = new LightSourceAdapter();
+    }
     
     @Override
     public void onResume() {
@@ -57,7 +65,7 @@ public class LightsFragment extends TabFragment implements LightsContract.View {
     
     @Override
     public void showLightSources(List<LightSource> lightSources) {
-        
+        lightSourceAdapter.replaceData(lightSources);
     }
     
 }
