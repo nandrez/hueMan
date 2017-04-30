@@ -8,54 +8,6 @@
 	tools:layout_editor_absoluteY="81dp"
 	tools:layout_editor_absoluteX="0dp">
 	
-	<EditText
-		android:id="@+id/name"
-		android:layout_width="214dp"
-		android:layout_height="0dp"
-		android:layout_marginBottom="8dp"
-		android:layout_marginLeft="8dp"
-		android:layout_marginStart="8dp"
-		android:layout_marginTop="8dp"
-		android:ems="10"
-		android:inputType="text"
-		android:singleLine="false"
-		hueman:layout_constraintBottom_toTopOf="@+id/guideline"
-		hueman:layout_constraintLeft_toLeftOf="parent"
-		hueman:layout_constraintTop_toTopOf="parent"
-		hueman:layout_constraintVertical_bias="0.0"
-		hueman:layout_constraintRight_toLeftOf="@+id/imageButton"
-		android:layout_marginRight="8dp"
-		hueman:layout_constraintHorizontal_bias="0.0" />
-	
-	<ImageButton
-		android:id="@+id/imageButton"
-		android:layout_width="0dp"
-		android:layout_height="0dp"
-		android:layout_marginBottom="8dp"
-		android:layout_marginEnd="8dp"
-		android:layout_marginRight="8dp"
-		android:layout_marginStart="8dp"
-		android:layout_marginTop="8dp"
-		hueman:layout_constraintBottom_toTopOf="@+id/guideline"
-		hueman:layout_constraintDimensionRatio="h,1:1"
-		hueman:layout_constraintRight_toLeftOf="@+id/toggleButton"
-		hueman:layout_constraintTop_toTopOf="parent"
-		hueman:layout_constraintVertical_bias="0.0"
-		hueman:srcCompat="@color/colorPrimary" />
-	
-	<ToggleButton
-		android:id="@+id/toggleButton"
-		android:layout_width="wrap_content"
-		android:layout_height="0dp"
-		android:layout_marginBottom="8dp"
-		android:layout_marginRight="8dp"
-		android:layout_marginTop="8dp"
-		android:text="ToggleButton"
-		hueman:layout_constraintBottom_toTopOf="@+id/guideline"
-		hueman:layout_constraintRight_toRightOf="parent"
-		hueman:layout_constraintTop_toTopOf="parent"
-		hueman:layout_constraintVertical_bias="0.0" />
-	
 	<android.support.constraint.Guideline
 		android:id="@+id/guideline"
 		android:layout_width="wrap_content"
@@ -65,8 +17,55 @@
 		tools:layout_editor_absoluteX="0dp"
 		tools:layout_editor_absoluteY="58dp" />
 	
+	<EditText
+		android:id="@+id/lightName"
+		android:layout_width="wrap_content"
+		android:layout_height="0dp"
+		android:layout_marginBottom="8dp"
+		android:layout_marginLeft="8dp"
+		android:layout_marginRight="8dp"
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="8dp"
+		android:ems="10"
+		android:inputType="text"
+		android:singleLine="false"
+		hueman:layout_constraintBottom_toTopOf="@+id/guideline"
+		hueman:layout_constraintHorizontal_bias="0.0"
+		hueman:layout_constraintLeft_toLeftOf="parent"
+		hueman:layout_constraintRight_toLeftOf="@+id/lightColor"
+		hueman:layout_constraintTop_toTopOf="parent"
+		hueman:layout_constraintVertical_bias="0.0" />
+	
+	<ImageButton
+		android:id="@+id/lightColor"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_marginBottom="8dp"
+		android:layout_marginEnd="8dp"
+		android:layout_marginRight="8dp"
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="8dp"
+		hueman:layout_constraintBottom_toTopOf="@+id/guideline"
+		hueman:layout_constraintDimensionRatio="h,1:1"
+		hueman:layout_constraintRight_toLeftOf="@+id/lightSwitch"
+		hueman:layout_constraintTop_toTopOf="parent"
+		hueman:layout_constraintVertical_bias="0.0"
+		hueman:srcCompat="@color/colorPrimary" />
+	
+	<ToggleButton
+		android:id="@+id/lightSwitch"
+		android:layout_width="wrap_content"
+		android:layout_height="0dp"
+		android:layout_marginBottom="8dp"
+		android:layout_marginRight="8dp"
+		android:layout_marginTop="8dp"
+		hueman:layout_constraintBottom_toTopOf="@+id/guideline"
+		hueman:layout_constraintRight_toRightOf="parent"
+		hueman:layout_constraintTop_toTopOf="parent"
+		hueman:layout_constraintVertical_bias="0.0" />
+	
 	<com.larswerkman.holocolorpicker.ValueBar
-		android:id="@+id/valuebar"
+		android:id="@+id/brightnessBar"
 		android:layout_width="0dp"
 		android:layout_height="28dp"
 		android:layout_marginLeft="8dp"
@@ -78,15 +77,16 @@
 		hueman:layout_constraintHorizontal_bias="0.0" />
 	
 	<TextView
-		android:id="@+id/palette"
+		android:id="@+id/colorPalette"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="ColorPalette"
-		android:layout_marginTop="8dp"
-		hueman:layout_constraintTop_toBottomOf="@+id/valuebar"
 		android:layout_marginLeft="8dp"
-		hueman:layout_constraintLeft_toLeftOf="parent"
 		android:layout_marginRight="8dp"
-		hueman:layout_constraintRight_toRightOf="parent" />
+		android:layout_marginTop="8dp"
+		android:text="ColorPalette"
+		hueman:layout_constraintHorizontal_bias="0.0"
+		hueman:layout_constraintLeft_toLeftOf="parent"
+		hueman:layout_constraintRight_toRightOf="parent"
+		hueman:layout_constraintTop_toBottomOf="@+id/brightnessBar" />
 
 </android.support.constraint.ConstraintLayout>
