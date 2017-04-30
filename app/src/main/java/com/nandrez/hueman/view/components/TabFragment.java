@@ -18,6 +18,9 @@ public abstract class TabFragment extends Fragment {
     }
     
     public String getTabTitle() {
+        if (title == null) {
+            title = "";
+        }
         return title;
     }
     
