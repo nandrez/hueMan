@@ -3,6 +3,16 @@
  */
 package com.nandrez.hueman.data;
 
-public interface LightSource extends Dimmable, Hueable {
+public abstract class LightSource implements Dimmable, Hueable {
+    
+    private String name;
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
     
 }

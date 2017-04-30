@@ -5,8 +5,8 @@ package com.nandrez.hueman.data;
 
 public interface Dimmable {
 	
-	static int MAX_BRIGHTNESS = 100;
-	static int MIN_BRIGHTNESS = 0;
+	static float MAX_BRIGHTNESS = 1f;
+	static float MIN_BRIGHTNESS = 0f;
 	
 	boolean isOn();
 	
@@ -14,8 +14,8 @@ public interface Dimmable {
 	
 	void off();
 	
-	int getBrightness();
+	float getBrightness();
 	
-	void setBrightness(int brightness);
+	void setBrightness(float brightness);
 	
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.nandrez.hueman.data.LightSource;
 
-public class Lamp implements LightSource {
+public class Lamp extends LightSource {
     
     private List<Light> lights;
     
@@ -41,32 +41,63 @@ public class Lamp implements LightSource {
     }
     
     @Override
-    public int getBrightness() {
-        if (lights.isEmpty()) {
-            return 0;
-        }
-        int average = 0;
+    public float getBrightness() {
+        int activeLights = 0;
+        float sum = 0f;
         for (LightSource light : lights) {
-            average += light.isOn() ? light.getBrightness() : 0;
+            if (light.isOn()) {
+                sum += light.getBrightness();
+                activeLights++;
+            }
         }
-        return Math.round(average / lights.size());
+        return activeLights > 0 ? sum / activeLights : 0;
     }
     
     @Override
-    public void setBrightness(int brightness) {
+    public void setBrightness(float brightness) {
         for (LightSource light : lights) {
             light.setBrightness(brightness);
         }
     }
     
     @Override
-    public Object getHue() {
-        throw new NullPointerException("not yet implemented!");
+    public float getHue() {
+        int activeLights = 0;
+        float sum = 0f;
+        for (LightSource light : lights) {
+            if (light.isOn()) {
+                sum += light.getHue();
+                activeLights++;
+            }
+        }
+        return activeLights > 0 ? sum / activeLights : 0;
     }
     
     @Override
-    public void setHue(Object hue) {
-        throw new RuntimeException("not yet implemented!");
+    public void setHue(float hue) {
+        for (LightSource light : lights) {
+            light.setHue(hue);
+        }
+    }
+    
+    @Override
+    public float getSaturation() {
+        int activeLights = 0;
+        float sum = 0f;
+        for (LightSource light : lights) {
+            if (light.isOn()) {
+                sum += light.getSaturation();
+                activeLights++;
+            }
+        }
+        return activeLights > 0 ? sum / activeLights : 0;
+    }
+    
+    @Override
+    public void setSaturation(float saturation) {
+        for (LightSource light : lights) {
+            light.setSaturation(saturation);
+        }
     }
     
     public void addLight(Light light) {

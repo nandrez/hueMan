@@ -43,32 +43,63 @@ public class Room implements Dimmable, Hueable {
     }
     
     @Override
-    public int getBrightness() {
-        if (lightSources.isEmpty()) {
-            return 0;
-        }
-        int average = 0;
+    public float getBrightness() {
+        int activeLights = 0;
+        float sum = 0f;
         for (LightSource light : lightSources) {
-            average += light.isOn() ? light.getBrightness() : 0;
+            if (light.isOn()) {
+                sum += light.getBrightness();
+                activeLights++;
+            }
         }
-        return average / lightSources.size();
+        return activeLights > 0 ? sum / activeLights : 0;
     }
     
     @Override
-    public void setBrightness(int brightness) {
+    public void setBrightness(float brightness) {
         for (LightSource light : lightSources) {
             light.setBrightness(brightness);
         }
     }
     
     @Override
-    public Object getHue() {
-        throw new NullPointerException("not yet implemented!");
+    public float getHue() {
+        int activeLights = 0;
+        float sum = 0f;
+        for (LightSource light : lightSources) {
+            if (light.isOn()) {
+                sum += light.getHue();
+                activeLights++;
+            }
+        }
+        return activeLights > 0 ? sum / activeLights : 0;
     }
     
     @Override
-    public void setHue(Object hue) {
-        throw new RuntimeException("not yet implemented!");
+    public void setHue(float hue) {
+        for (LightSource light : lightSources) {
+            light.setHue(hue);
+        }
+    }
+    
+    @Override
+    public float getSaturation() {
+        int activeLights = 0;
+        float sum = 0f;
+        for (LightSource light : lightSources) {
+            if (light.isOn()) {
+                sum += light.getSaturation();
+                activeLights++;
+            }
+        }
+        return activeLights > 0 ? sum / activeLights : 0;
+    }
+    
+    @Override
+    public void setSaturation(float saturation) {
+        for (LightSource light : lightSources) {
+            light.setSaturation(saturation);
+        }
     }
     
     public void addLightSource(LightSource lightSource) {
