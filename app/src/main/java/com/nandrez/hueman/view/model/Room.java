@@ -9,6 +9,7 @@ import java.util.List;
 import com.nandrez.hueman.data.Dimmable;
 import com.nandrez.hueman.data.Hueable;
 import com.nandrez.hueman.data.LightSource;
+import com.nandrez.hueman.util.LightSources;
 
 public class Room implements Dimmable, Hueable {
     
@@ -44,15 +45,7 @@ public class Room implements Dimmable, Hueable {
     
     @Override
     public float getBrightness() {
-        int activeLights = 0;
-        float sum = 0f;
-        for (LightSource light : lightSources) {
-            if (light.isOn()) {
-                sum += light.getBrightness();
-                activeLights++;
-            }
-        }
-        return activeLights > 0 ? sum / activeLights : 0;
+        return LightSources.getAverageBrightness(lightSources);
     }
     
     @Override
@@ -64,15 +57,7 @@ public class Room implements Dimmable, Hueable {
     
     @Override
     public float getHue() {
-        int activeLights = 0;
-        float sum = 0f;
-        for (LightSource light : lightSources) {
-            if (light.isOn()) {
-                sum += light.getHue();
-                activeLights++;
-            }
-        }
-        return activeLights > 0 ? sum / activeLights : 0;
+        return LightSources.getAverageHue(lightSources);
     }
     
     @Override
@@ -84,15 +69,7 @@ public class Room implements Dimmable, Hueable {
     
     @Override
     public float getSaturation() {
-        int activeLights = 0;
-        float sum = 0f;
-        for (LightSource light : lightSources) {
-            if (light.isOn()) {
-                sum += light.getSaturation();
-                activeLights++;
-            }
-        }
-        return activeLights > 0 ? sum / activeLights : 0;
+        return LightSources.getAverageSaturation(lightSources);
     }
     
     @Override
