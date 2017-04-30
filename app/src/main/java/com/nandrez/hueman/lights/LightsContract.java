@@ -13,11 +13,15 @@ public interface LightsContract {
     
     interface View extends BaseView<Presenter> {
         
-        void showLightsources(List<LightSource> lightsources);
+        void displayLoadingIndicator(boolean shown);
+        
+        void showLightSources(List<LightSource> lightSources);
         
     }
     
     interface Presenter extends BasePresenter {
+    
+        void result(int requestCode, int resultCode);
         
         void loadLightSources(boolean forceReload);
         

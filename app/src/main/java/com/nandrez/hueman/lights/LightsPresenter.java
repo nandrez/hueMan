@@ -8,19 +8,33 @@ import com.nandrez.hueman.data.LightSource;
 public class LightsPresenter implements LightsContract.Presenter {
     
     private final LightsContract.View view;
+    private boolean isInitialized;
     
     public LightsPresenter(LightsContract.View lightsView) {
-        this.view = lightsView;
+        view = lightsView;
+        view.setPresenter(this);
     }
     
     @Override
     public void start() {
+        loadLightSources(true);
+    }
+    
+    @Override
+    public void result(int requestCode, int resultCode) {
         
     }
     
     @Override
     public void loadLightSources(boolean forceReload) {
-        
+        loadLightSources(!isInitialized || forceReload, true);
+        isInitialized = true;
+    }
+    
+    private void loadLightSources(boolean forceReload, boolean showIndicator) {
+        if (showIndicator) {
+            view.displayLoadingIndicator(true);
+        }
     }
     
     @Override
