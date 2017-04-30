@@ -19,7 +19,8 @@ public class TabFragmentAdapter extends FragmentPagerAdapter {
         tabs = new ArrayList<>();
     }
     
-    public void addItem(TabFragment tab) {
+    public void addItem(TabFragment tab, String title) {
+        tab.setTabTitle(title);
         tabs.add(tab);
     }
     

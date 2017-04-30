@@ -13,10 +13,6 @@ import com.nandrez.hueman.view.components.TabFragment;
 
 public class ScenesFragment extends TabFragment {
     
-    public ScenesFragment(String tabTitle) {
-        super(tabTitle);
-    }
-    
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

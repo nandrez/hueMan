@@ -11,18 +11,18 @@ import android.view.ViewGroup;
 
 public abstract class TabFragment extends Fragment {
     
-    private final String title;
+    private String title;
     
-    public TabFragment(String tabTitle) {
-        title = tabTitle;
-    }
-    
-    public static View inflateTabView(LayoutInflater inflater, int resourceId, @Nullable ViewGroup container) {
+    protected static View inflateTabView(LayoutInflater inflater, int resourceId, @Nullable ViewGroup container) {
         return inflater.inflate(resourceId, container, false);
     }
     
     public String getTabTitle() {
         return title;
+    }
+    
+    public void setTabTitle(String tabTitle) {
+        title = tabTitle;
     }
     
 }

@@ -15,10 +15,6 @@ public class LightsFragment extends TabFragment implements LightsContract.View {
     
     private LightsContract.Presenter presenter;
     
-    public LightsFragment(String tabTitle) {
-        super(tabTitle);
-    }
-    
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
