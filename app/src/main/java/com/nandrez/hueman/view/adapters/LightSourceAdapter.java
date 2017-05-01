@@ -5,12 +5,10 @@ package com.nandrez.hueman.view.adapters;
 
 import java.util.ArrayList;
 import java.util.List;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -20,12 +18,28 @@ import com.nandrez.hueman.R;
 import com.nandrez.hueman.data.LightSource;
 import com.nandrez.hueman.util.LightSources;
 
-public class LightSourceAdapter extends BaseAdapter {
+public class LightSourceAdapter extends RecyclerView.Adapter<LightSourceAdapter.LightSourceViewHolder> {
     
     private final List<LightSource> lightSources;
     
     public LightSourceAdapter() {
         lightSources = new ArrayList<>();
+    }
+    
+    @Override
+    public LightSourceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.component_control_light, parent, false);
+        return new LightSourceViewHolder(view);
+    }
+    
+    @Override
+    public void onBindViewHolder(LightSourceViewHolder holder, int position) {
+        LightSource lightSource = lightSources.get(position);
+        holder.setLabel(lightSource.getName());
+        holder.setColor(LightSources.getRgbColor(lightSource));
+        holder.setSwitchState(lightSource.isOn());
+        holder.setBrightness(lightSource.getBrightness());
     }
     
     public void replaceData(List<LightSource> lightSources) {
@@ -39,46 +53,42 @@ public class LightSourceAdapter extends BaseAdapter {
     }
     
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View view = convertView;
-        if (view == null) {
-            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            view = inflater.inflate(R.layout.component_control_light, parent, false);
-        }
-    
-        LightSource lightSource = getItem(position);
-        if (lightSource == null) {
-            return view;
-        }
-        
-        TextView label = (TextView) view.findViewById(R.id.lightName);
-        ImageButton colorButton = (ImageButton) view.findViewById(R.id.lightColor);
-        ToggleButton lightSwitch = (ToggleButton) view.findViewById(R.id.lightSwitch);
-        ValueBar brightnessBar = (ValueBar) view.findViewById(R.id.brightnessBar);
-        
-        label.setText(lightSource.getName());
-        int rgbColor = LightSources.getRgbColor(lightSource);
-        colorButton.setBackgroundColor(rgbColor);
-        lightSwitch.setChecked(lightSource.isOn());
-        brightnessBar.setValue(lightSource.getBrightness());
-        brightnessBar.setColor(rgbColor);
-        
-        return view;
-    }
-    
-    @Override
-    public int getCount() {
+    public int getItemCount() {
         return lightSources.size();
     }
     
-    @Override
-    public LightSource getItem(int position) {
-        return lightSources.get(position);
-    }
+    static class LightSourceViewHolder extends RecyclerView.ViewHolder {
+        
+        private final TextView lightLabel;
+        private final ImageButton colorButton;
+        private final ToggleButton lightSwitch;
+        private final ValueBar brightnessBar;
     
-    @Override
-    public long getItemId(int position) {
-        return position;
+        public LightSourceViewHolder(View itemView) {
+            super(itemView);
+            lightLabel = (TextView) itemView.findViewById(R.id.lightName);
+            colorButton = (ImageButton) itemView.findViewById(R.id.lightColor);
+            lightSwitch = (ToggleButton) itemView.findViewById(R.id.lightSwitch);
+            brightnessBar = (ValueBar) itemView.findViewById(R.id.brightnessBar);
+        }
+    
+        public void setLabel(String text) {
+            lightLabel.setText(text);
+        }
+    
+        public void setColor(int rgbColor) {
+            colorButton.setBackgroundColor(rgbColor);
+            brightnessBar.setColor(rgbColor);
+        }
+    
+        public void setSwitchState(boolean isChecked) {
+            lightSwitch.setChecked(isChecked);
+        }
+    
+        public void setBrightness(float brightness) {
+            brightnessBar.setValue(brightness);
+        }
+        
     }
     
 }

@@ -30,8 +30,6 @@ public class HueManActivity extends Activity {
         tabFragmentAdapter = new TabFragmentAdapter(getFragmentManager());
         
         LightsFragment lightsTab = new LightsFragment();
-        LightsPresenter lightsPresenter = new LightsPresenter(lightsTab);
-        lightsTab.setPresenter(lightsPresenter);
         tabFragmentAdapter.addItem(lightsTab, getString(R.string.title_fragment_lights));
         ScenesFragment scenesTab = new ScenesFragment();
         tabFragmentAdapter.addItem(scenesTab, getString(R.string.title_fragment_scenes));

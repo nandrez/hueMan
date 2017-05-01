@@ -10,7 +10,7 @@ public class LightsPresenter implements LightsContract.Presenter {
     private final LightsContract.View view;
     private boolean isInitialized;
     
-    public LightsPresenter(LightsContract.View lightsView) {
+    LightsPresenter(LightsContract.View lightsView) {
         view = lightsView;
         view.setPresenter(this);
     }
@@ -66,4 +66,5 @@ public class LightsPresenter implements LightsContract.Presenter {
     public void saturateLightSources(float saturation, LightSource... lightSource) {
         
     }
+    
 }
