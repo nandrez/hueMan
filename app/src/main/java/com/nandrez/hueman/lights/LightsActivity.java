@@ -27,7 +27,7 @@ public class LightsActivity extends Activity {
     }
     
     private LightsFragment getLightsFragment() {
-        LightsFragment fragment = (LightsFragment) getFragmentManager().findFragmentById(0);
+        LightsFragment fragment = (LightsFragment) getFragmentManager().findFragmentById(R.id.contentFragment);
         if (fragment == null) {
             fragment = new LightsFragment();
             HueActivities.addFragment(getFragmentManager(), fragment, 0);
