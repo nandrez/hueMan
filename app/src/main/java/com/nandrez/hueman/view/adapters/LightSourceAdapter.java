@@ -42,7 +42,7 @@ public class LightSourceAdapter extends RecyclerView.Adapter<LightSourceAdapter.
         holder.setBrightness(lightSource.getBrightness());
     }
     
-    public void replaceData(List<LightSource> lightSources) {
+    public void replaceLightSources(List<LightSource> lightSources) {
         setList(lightSources);
         notifyDataSetChanged();
     }

@@ -7,6 +7,8 @@ import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +21,26 @@ import com.nandrez.hueman.view.components.TabFragment;
 public class LightsFragment extends TabFragment implements LightsContract.View {
     
     private LightsContract.Presenter presenter;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
     private LightSourceAdapter lightSourceAdapter;
     
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lightSourceAdapter = new LightSourceAdapter();
+        layoutManager = new LinearLayoutManager(getContext());
+    }
+    
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_lights, container, false);
+        recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(lightSourceAdapter);
+        
+        return root;
     }
     
     @Override
@@ -38,12 +54,6 @@ public class LightsFragment extends TabFragment implements LightsContract.View {
         presenter.result(requestCode, resultCode);
     }
     
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflateTabView(inflater, R.layout.fragment_lights, container);
-    }
-    
     @Override
     public void setPresenter(LightsContract.Presenter lightsPresenter) {
         presenter = lightsPresenter;
@@ -54,18 +64,11 @@ public class LightsFragment extends TabFragment implements LightsContract.View {
         if (getView() == null) {
             return;
         }
-//        TODO: SwipeRefreshLayout
-//        srl.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                srl.setRefreshing(shown);
-//            }
-//        });
     }
     
     @Override
     public void showLightSources(List<LightSource> lightSources) {
-        lightSourceAdapter.replaceData(lightSources);
+        lightSourceAdapter.replaceLightSources(lightSources);
     }
     
 }
