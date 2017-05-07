@@ -30,7 +30,7 @@
 				tools:layout_editor_absoluteX="0dp"
 				tools:layout_editor_absoluteY="58dp" />
 			
-			<EditText
+			<TextView
 				android:id="@+id/lightName"
 				android:layout_width="wrap_content"
 				android:layout_height="0dp"
@@ -42,6 +42,7 @@
 				android:ems="10"
 				android:inputType="text"
 				android:singleLine="false"
+				android:text="Label"
 				hueman:layout_constraintBottom_toTopOf="@+id/guideline"
 				hueman:layout_constraintHorizontal_bias="0.0"
 				hueman:layout_constraintLeft_toLeftOf="parent"
