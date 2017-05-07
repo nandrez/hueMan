@@ -3,14 +3,14 @@
  */
 package com.nandrez.hueman.lights;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.nandrez.hueman.R;
 import com.nandrez.hueman.util.HueActivities;
 
-public class LightsActivity extends Activity {
+public class LightsActivity extends AppCompatActivity {
     
     private LightsPresenter presenter;
     
@@ -20,7 +20,7 @@ public class LightsActivity extends Activity {
         setContentView(R.layout.activity_lights);
     
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setActionBar(toolbar);
+        setSupportActionBar(toolbar);
     
         LightsFragment fragment = getLightsFragment();
         presenter = new LightsPresenter(fragment);
