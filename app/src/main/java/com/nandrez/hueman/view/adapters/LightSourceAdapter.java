@@ -29,7 +29,7 @@ public class LightSourceAdapter extends RecyclerView.Adapter<LightSourceAdapter.
     @Override
     public LightSourceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.component_control_light, parent, false);
+        View view = inflater.inflate(R.layout.card_light, parent, false);
         return new LightSourceViewHolder(view);
     }
     
