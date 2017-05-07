@@ -7,7 +7,9 @@ import java.util.List;
 
 import com.nandrez.hueman.BasePresenter;
 import com.nandrez.hueman.BaseView;
-import com.nandrez.hueman.data.LightSource;
+import com.nandrez.hueman.data.Dimmable;
+import com.nandrez.hueman.data.Hueable;
+import com.nandrez.hueman.data.Illuminable;
 
 public interface LightsContract {
     
@@ -15,7 +17,7 @@ public interface LightsContract {
         
         void displayLoadingIndicator(boolean shown);
         
-        void showLightSources(List<LightSource> lightSources);
+        void showIlluminables(List<Illuminable> illuminables);
         
     }
     
@@ -23,19 +25,19 @@ public interface LightsContract {
     
         void result(int requestCode, int resultCode);
         
-        void loadLightSources(boolean forceReload);
+        void loadIlluminables(boolean forceReload);
         
-        void addNewLightSource();
+        void addNewIlluminable();
         
-        void turnOnLightSources(LightSource... lightsource);
+        void turnOnIlluminables(Dimmable... dimmables);
     
-        void turnOffLightSources(LightSource... lightsource);
+        void turnOffIlluminables(Dimmable... dimmables);
         
-        void dimLightSources(float brightness, LightSource... lightSource);
+        void dimIlluminables(float brightness, Dimmable... dimmables);
     
-        void hueLightSources(float hue, LightSource... lightSource);
+        void hueIlluminables(float hue, Hueable... huables);
     
-        void saturateLightSources(float saturation, LightSource... lightSource);
+        void saturateIlluminables(float saturation, Hueable... huables);
         
     }
     

@@ -3,7 +3,8 @@
  */
 package com.nandrez.hueman.lights;
 
-import com.nandrez.hueman.data.LightSource;
+import com.nandrez.hueman.data.Dimmable;
+import com.nandrez.hueman.data.Hueable;
 
 public class LightsPresenter implements LightsContract.Presenter {
     
@@ -17,7 +18,7 @@ public class LightsPresenter implements LightsContract.Presenter {
     
     @Override
     public void start() {
-        loadLightSources(true);
+        loadIlluminables(true);
     }
     
     @Override
@@ -26,7 +27,7 @@ public class LightsPresenter implements LightsContract.Presenter {
     }
     
     @Override
-    public void loadLightSources(boolean forceReload) {
+    public void loadIlluminables(boolean forceReload) {
         loadLightSources(!isInitialized || forceReload, true);
         isInitialized = true;
     }
@@ -38,33 +39,32 @@ public class LightsPresenter implements LightsContract.Presenter {
     }
     
     @Override
-    public void addNewLightSource() {
+    public void addNewIlluminable() {
         
     }
     
     @Override
-    public void turnOnLightSources(LightSource... lightsource) {
+    public void turnOnIlluminables(Dimmable... dimmables) {
         
     }
     
     @Override
-    public void turnOffLightSources(LightSource... lightsource) {
+    public void turnOffIlluminables(Dimmable... dimmables) {
         
     }
     
     @Override
-    public void dimLightSources(float brightness, LightSource... lightSource) {
+    public void dimIlluminables(float brightness, Dimmable... dimmables) {
         
     }
     
     @Override
-    public void hueLightSources(float hue, LightSource... lightSource) {
+    public void hueIlluminables(float hue, Hueable... hueables) {
         
     }
     
     @Override
-    public void saturateLightSources(float saturation, LightSource... lightSource) {
+    public void saturateIlluminables(float saturation, Hueable... hueables) {
         
     }
-    
 }

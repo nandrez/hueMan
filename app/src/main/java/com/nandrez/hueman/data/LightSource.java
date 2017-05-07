@@ -3,14 +3,16 @@
  */
 package com.nandrez.hueman.data;
 
-public abstract class LightSource implements Dimmable, Hueable {
+public abstract class LightSource implements Illuminable {
     
     private String name;
     
+    @Override
     public String getName() {
         return name;
     }
     
+    @Override
     public void setName(String name) {
         this.name = name;
     }

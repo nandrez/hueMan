@@ -7,19 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.nandrez.hueman.data.LightSource;
-import com.nandrez.hueman.util.LightSources;
+import com.nandrez.hueman.util.Illuminables;
 
 public class Lamp extends LightSource {
     
-    private List<Light> lights;
+    private final List<Light> lights;
     
     public Lamp() {
-        this.lights = new ArrayList<>();
+        lights = new ArrayList<>();
+    }
+    
+    public void addLight(Light light) {
+        lights.add(light);
     }
     
     @Override
     public boolean isOn() {
-        for (LightSource light : lights) {
+        for (Light light : lights) {
             if (light.isOn()) {
                 return true;
             }
@@ -29,56 +33,52 @@ public class Lamp extends LightSource {
     
     @Override
     public void on() {
-        for (LightSource light : lights) {
+        for (Light light : lights) {
             light.on();
         }
     }
     
     @Override
     public void off() {
-        for (LightSource light : lights) {
+        for (Light light : lights) {
             light.off();
         }
     }
     
     @Override
     public float getBrightness() {
-        return LightSources.getAverageBrightness(lights);
+        return Illuminables.getAverageBrightness(lights);
     }
     
     @Override
     public void setBrightness(float brightness) {
-        for (LightSource light : lights) {
+        for (Light light : lights) {
             light.setBrightness(brightness);
         }
     }
     
     @Override
     public float getHue() {
-        return LightSources.getAverageHue(lights);
+        return Illuminables.getAverageHue(lights);
     }
     
     @Override
     public void setHue(float hue) {
-        for (LightSource light : lights) {
+        for (Light light : lights) {
             light.setHue(hue);
         }
     }
     
     @Override
     public float getSaturation() {
-        return LightSources.getAverageSaturation(lights);
+        return Illuminables.getAverageSaturation(lights);
     }
     
     @Override
     public void setSaturation(float saturation) {
-        for (LightSource light : lights) {
+        for (Light light : lights) {
             light.setSaturation(saturation);
         }
-    }
-    
-    public void addLight(Light light) {
-        lights.add(light);
     }
     
 }

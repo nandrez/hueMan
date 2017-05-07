@@ -3,8 +3,8 @@
  */
 package com.nandrez.hueman.lights;
 
-import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -28,11 +28,11 @@ public class LightsActivity extends AppCompatActivity {
     }
     
     private LightsFragment getLightsFragment() {
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         LightsFragment fragment = (LightsFragment) fragmentManager.findFragmentById(R.id.contentFragment);
         if (fragment == null) {
             fragment = new LightsFragment();
-            HueActivities.addFragment(fragmentManager, fragment, 0);
+            HueActivities.addFragment(fragmentManager, fragment, R.id.contentFragment);
         }
         return fragment;
     }

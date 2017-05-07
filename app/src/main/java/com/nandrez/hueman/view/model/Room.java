@@ -6,23 +6,27 @@ package com.nandrez.hueman.view.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nandrez.hueman.data.Dimmable;
-import com.nandrez.hueman.data.Hueable;
+import com.nandrez.hueman.data.Illuminable;
 import com.nandrez.hueman.data.LightSource;
-import com.nandrez.hueman.util.LightSources;
+import com.nandrez.hueman.util.Illuminables;
 
-public class Room implements Dimmable, Hueable {
+public class Room implements Illuminable {
     
-    private List<LightSource> lightSources;
+    private final List<LightSource> lightSources;
+    private String name;
     
     public Room() {
         lightSources = new ArrayList<>();
     }
     
+    public void addLightSource(LightSource lightSource) {
+        lightSources.add(lightSource);
+    }
+    
     @Override
     public boolean isOn() {
-        for (LightSource light : lightSources) {
-            if (light.isOn()) {
+        for (LightSource lightSource : lightSources) {
+            if (lightSource.isOn()) {
                 return true;
             }
         }
@@ -31,21 +35,21 @@ public class Room implements Dimmable, Hueable {
     
     @Override
     public void on() {
-        for (LightSource light : lightSources) {
-            light.on();
+        for (LightSource lightSource : lightSources) {
+            lightSource.on();
         }
     }
     
     @Override
     public void off() {
-        for (LightSource light : lightSources) {
-            light.off();
+        for (LightSource lightSource : lightSources) {
+            lightSource.off();
         }
     }
     
     @Override
     public float getBrightness() {
-        return LightSources.getAverageBrightness(lightSources);
+        return Illuminables.getAverageBrightness(lightSources);
     }
     
     @Override
@@ -57,7 +61,7 @@ public class Room implements Dimmable, Hueable {
     
     @Override
     public float getHue() {
-        return LightSources.getAverageHue(lightSources);
+        return Illuminables.getAverageHue(lightSources);
     }
     
     @Override
@@ -69,7 +73,7 @@ public class Room implements Dimmable, Hueable {
     
     @Override
     public float getSaturation() {
-        return LightSources.getAverageSaturation(lightSources);
+        return Illuminables.getAverageSaturation(lightSources);
     }
     
     @Override
@@ -79,8 +83,14 @@ public class Room implements Dimmable, Hueable {
         }
     }
     
-    public void addLightSource(LightSource lightSource) {
-        lightSources.add(lightSource);
+    @Override
+    public String getName() {
+        return name;
+    }
+    
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
     
 }
