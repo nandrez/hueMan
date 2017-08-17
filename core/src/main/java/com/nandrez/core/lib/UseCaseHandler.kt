@@ -9,23 +9,16 @@ package com.nandrez.core.lib
 class UseCaseHandler private constructor(private val scheduler: UseCaseScheduler) {
     
     /**
-     * Executes the UseCase with the given Values.
+     * Executes the UseCase with the given request-values.
      * The invocation of the Callback is delegated to the scheduler.
      */
-    fun <Q : UseCase.RequestValues, R : UseCase.ResponseValue> execute(useCase: UseCase<Q, R>,
-                                                                       requestValues: Q,
-                                                                       callback: UseCase.Callback<R>) {
+    fun <Q : UseCase.Request, R : UseCase.Response> execute(useCase: UseCase<Q, R>, request: Q,
+                                                            callback: UseCase.Callback<R>) {
         scheduler.execute {
-            
-            useCase.run(requestValues, object : UseCase.Callback<R> {
-                override fun onSuccess(response: R) {
-                    scheduler.notifyResponse(response, callback)
-                }
-                override fun onError() {
-                    scheduler.notifyError(callback)
-                }
+            useCase.run(request, object : UseCase.Callback<R> {
+                override fun onSuccess(response: R) = scheduler.notifyOnSuccess(response, callback)
+                override fun onError() = scheduler.notifyOnError(callback)
             })
-            
         }
     }
 

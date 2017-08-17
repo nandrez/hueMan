@@ -13,11 +13,11 @@ interface UseCaseScheduler : Executor {
     /**
      * Invokes the Callback's onSuccess method.
      */
-    fun <R : UseCase.ResponseValue> notifyResponse(response: R, useCaseCallback: UseCase.Callback<R>)
+    fun <R : UseCase.Response> notifyOnSuccess(response: R, useCaseCallback: UseCase.Callback<R>)
     
     /**
      * Invokes the Callback's onError method.
      */
-    fun <R : UseCase.ResponseValue> notifyError(useCaseCallback: UseCase.Callback<R>)
+    fun <R : UseCase.Response> notifyOnError(useCaseCallback: UseCase.Callback<R>)
     
 }
