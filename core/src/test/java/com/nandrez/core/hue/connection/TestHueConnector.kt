@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2017. nandrez labs, All Rights Reserved
  */
-package com.nandrez.core.hue.net
+package com.nandrez.core.hue.connection
 
 import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
