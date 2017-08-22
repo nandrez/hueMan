@@ -17,6 +17,8 @@ data class AccessPoint(
             phAccessPoint.macAddress,
             phAccessPoint.username
     )
-    
-    internal fun mapToPHAccessPoint() = PHAccessPoint(ipAddress, userName, macAddress)
+}
+
+internal fun PHAccessPoint.create(accessPoint: AccessPoint) {
+    PHAccessPoint(accessPoint.ipAddress, accessPoint.userName, accessPoint.macAddress)
 }
