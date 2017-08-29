@@ -12,4 +12,11 @@ internal interface HueService {
         fun onFailedDiscovery()
     }
     
+    fun pairWithHueBridge(accessPoint: AccessPoint, callback: PairWithHueBridgeCallback)
+    
+    interface PairWithHueBridgeCallback {
+        fun onConnectionEstablished(token: String)
+        fun onFailedConnection()
+    }
+    
 }

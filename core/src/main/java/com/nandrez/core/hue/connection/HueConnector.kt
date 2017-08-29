@@ -28,6 +28,10 @@ internal class HueConnector(private val phHue: PHHueSDK = PHHueSDK.getInstance()
         phHue.discoverBridge()
     }
     
+    override fun pairWithHueBridge(accessPoint: AccessPoint, callback: HueService.PairWithHueBridgeCallback) {
+        TODO("not implemented")
+    }
+    
     private fun PHHueSDK.registerListener(listener: HueServiceAdapter) {
         notificationManager.registerSDKListener(listener)
     }
