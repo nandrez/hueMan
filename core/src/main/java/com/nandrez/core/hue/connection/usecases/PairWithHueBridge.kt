@@ -14,7 +14,6 @@ class PairWithHueBridge internal constructor(val hueConnector: HueService)
     public constructor() : this(HueConnector())
     
     override fun executeUseCase(request: Request, callback: Callback<Response>) {
-        
         hueConnector.pairWithHueBridge(request.hueBridge, object : HueService.PairWithHueBridgeCallback {
             
             override fun onConnectionEstablished(token: String) {
