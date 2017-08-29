@@ -11,7 +11,7 @@ import com.nandrez.core.lib.UseCase
 class DiscoverHueBridge internal constructor(val hueConnector: HueService)
     : UseCase<DiscoverHueBridge.Request, DiscoverHueBridge.Response>() {
     
-    constructor() : this(HueConnector())
+    public constructor() : this(HueConnector())
     
     override fun executeUseCase(request: Request, callback: Callback<Response>) {
         hueConnector.discoverBridge(request.deviceName, object : HueService.DiscoverHueBridgeCallback {
