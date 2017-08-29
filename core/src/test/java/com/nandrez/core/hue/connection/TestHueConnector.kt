@@ -3,6 +3,7 @@
  */
 package com.nandrez.core.hue.connection
 
+import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
 import com.philips.lighting.hue.sdk.PHAccessPoint
@@ -11,7 +12,6 @@ import com.philips.lighting.hue.sdk.notification.impl.PHNotificationManagerImpl
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.mock
 
 class TestHueConnector {
     
@@ -27,7 +27,7 @@ class TestHueConnector {
     @Test
     fun discoverBridge() {
         val deviceName = "testDevice"
-        val callback = mock(HueService.DiscoverHueBridgeCallback::class.java)
+        val callback = mock<HueService.DiscoverHueBridgeCallback>()
     
         testee.discoverBridge(deviceName, callback)
     
