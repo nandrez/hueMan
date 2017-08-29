@@ -5,7 +5,7 @@ package com.nandrez.core.hue.connection
 
 import com.philips.lighting.hue.sdk.PHAccessPoint
 
-data class AccessPoint(
+data class HueBridge(
         val ipAddress: String,
         val bridgeName: String,
         val macAddress: String,
@@ -19,6 +19,6 @@ data class AccessPoint(
     )
 }
 
-internal fun PHAccessPoint.create(accessPoint: AccessPoint) {
-    PHAccessPoint(accessPoint.ipAddress, accessPoint.userName, accessPoint.macAddress)
+internal fun PHAccessPoint.create(hueBridge: HueBridge) {
+    PHAccessPoint(hueBridge.ipAddress, hueBridge.userName, hueBridge.macAddress)
 }

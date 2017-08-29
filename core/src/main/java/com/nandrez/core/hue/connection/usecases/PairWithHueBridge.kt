@@ -3,7 +3,7 @@
  */
 package com.nandrez.core.hue.connection.usecases
 
-import com.nandrez.core.hue.connection.AccessPoint
+import com.nandrez.core.hue.connection.HueBridge
 import com.nandrez.core.hue.connection.HueConnector
 import com.nandrez.core.hue.connection.HueService
 import com.nandrez.core.lib.UseCase
@@ -15,7 +15,7 @@ class PairWithHueBridge internal constructor(val hueConnector: HueService)
     
     override fun executeUseCase(request: Request, callback: Callback<Response>) {
         
-        hueConnector.pairWithHueBridge(request.accessPoint, object : HueService.PairWithHueBridgeCallback {
+        hueConnector.pairWithHueBridge(request.hueBridge, object : HueService.PairWithHueBridgeCallback {
             
             override fun onConnectionEstablished(token: String) {
                 val response = Response(token)
@@ -29,7 +29,7 @@ class PairWithHueBridge internal constructor(val hueConnector: HueService)
         })
     }
     
-    data class Request(val accessPoint: AccessPoint) : UseCase.Request
+    data class Request(val hueBridge: HueBridge) : UseCase.Request
     
     data class Response(val token: String) : UseCase.Response
     

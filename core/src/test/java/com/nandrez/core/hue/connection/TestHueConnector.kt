@@ -36,7 +36,7 @@ class TestHueConnector {
         
         val phAccessPoints = listOf(PHAccessPoint("1.3.3.7", "testUser", "any"))
         fakeDiscovery(phAccessPoints)
-        verify(callback, times(1)).onAccessPointsDiscovered(phAccessPoints.map { AccessPoint(it) })
+        verify(callback, times(1)).onAccessPointsDiscovered(phAccessPoints.map { HueBridge(it) })
         
         fakeError()
         verify(callback, times(1)).onFailedDiscovery()

@@ -16,7 +16,7 @@ internal class HueConnector(private val phHue: PHHueSDK = PHHueSDK.getInstance()
         phHue.registerListener(object : BridgeDiscoveryListener() {
             
             override fun onAccessPointsFound(phAccessPoints: MutableList<PHAccessPoint>) {
-                val accessPoints = phAccessPoints.map { AccessPoint(it) }
+                val accessPoints = phAccessPoints.map { HueBridge(it) }
                 callback.onAccessPointsDiscovered(accessPoints)
             }
     
@@ -28,7 +28,7 @@ internal class HueConnector(private val phHue: PHHueSDK = PHHueSDK.getInstance()
         phHue.discoverBridge()
     }
     
-    override fun pairWithHueBridge(accessPoint: AccessPoint, callback: HueService.PairWithHueBridgeCallback) {
+    override fun pairWithHueBridge(hueBridge: HueBridge, callback: HueService.PairWithHueBridgeCallback) {
         TODO("not implemented")
     }
     

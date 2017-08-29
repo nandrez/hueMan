@@ -3,7 +3,7 @@
  */
 package com.nandrez.core.hue.connection.usecases
 
-import com.nandrez.core.hue.connection.AccessPoint
+import com.nandrez.core.hue.connection.HueBridge
 import com.nandrez.core.hue.connection.HueService
 import com.nandrez.core.lib.UseCase
 import com.nhaarman.mockito_kotlin.any
@@ -69,7 +69,7 @@ class TestPairWithHueBridge {
     }
     
     private fun createRequest() : PairWithHueBridge.Request {
-        val accessPoint = AccessPoint("1.3.3.7", "testBridge", "any", "testuser")
+        val accessPoint = HueBridge("1.3.3.7", "testBridge", "any", "testuser")
         return PairWithHueBridge.Request(accessPoint)
     }
     

@@ -1,6 +1,6 @@
 package com.nandrez.core.hue.connection.usecases
 
-import com.nandrez.core.hue.connection.AccessPoint
+import com.nandrez.core.hue.connection.HueBridge
 import com.nandrez.core.hue.connection.HueService
 import com.nandrez.core.lib.UseCase
 import com.nhaarman.mockito_kotlin.any
@@ -66,7 +66,7 @@ class TestDiscoverHueBridge {
     }
     
     private fun createResponse() : DiscoverHueBridge.Response {
-        val accessPoint = listOf(AccessPoint("1.3.3.7", "testBridge", "any", "testuser"))
+        val accessPoint = listOf(HueBridge("1.3.3.7", "testBridge", "any", "testuser"))
         return DiscoverHueBridge.Response(accessPoint)
     }
     
