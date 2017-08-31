@@ -8,8 +8,10 @@ import com.nandrez.core.hue.connection.HueConnector
 import com.nandrez.core.hue.connection.HueService
 import com.nandrez.core.lib.UseCase
 
-class DiscoverHueBridge internal constructor(val hueConnector: HueService)
-    : UseCase<DiscoverHueBridge.Request, DiscoverHueBridge.Response>() {
+class DiscoverHueBridge internal constructor(
+    private val hueConnector: HueService
+
+) : UseCase<DiscoverHueBridge.Request, DiscoverHueBridge.Response>() {
     
     public constructor() : this(HueConnector())
     

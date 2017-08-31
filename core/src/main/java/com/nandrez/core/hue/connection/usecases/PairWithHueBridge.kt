@@ -8,7 +8,7 @@ import com.nandrez.core.hue.connection.HueConnector
 import com.nandrez.core.hue.connection.HueService
 import com.nandrez.core.lib.UseCase
 
-class PairWithHueBridge internal constructor(val hueConnector: HueService)
+class PairWithHueBridge internal constructor(private val hueConnector: HueService)
     : UseCase<PairWithHueBridge.Request, PairWithHueBridge.Response>() {
     
     public constructor() : this(HueConnector())
