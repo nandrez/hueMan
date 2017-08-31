@@ -1487,7 +1487,7 @@
     <inspection_tool class="JoinDeclarationAndAssignment" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
     <inspection_tool class="JsonDuplicatePropertyKeys" enabled="false" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="JsonStandardCompliance" enabled="false" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="KDocMissingDocumentation" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="KDocMissingDocumentation" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
     <inspection_tool class="KDocUnresolvedReference" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="KRUnspecifiedParameters" enabled="false" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="KeySetIterationMayUseEntrySet" enabled="false" level="WARNING" enabled_by_default="false" />
