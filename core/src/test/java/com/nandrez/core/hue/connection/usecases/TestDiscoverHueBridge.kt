@@ -36,7 +36,7 @@ class TestDiscoverHueBridge {
             }
         }
         
-        whenever(hueServiceMock.discoverBridge(any(), any())).thenAnswer {
+        whenever(hueServiceMock.discoverHueBridge(any(), any())).thenAnswer {
             callback.onSuccess(expectedResponse)
         }
         
@@ -57,7 +57,7 @@ class TestDiscoverHueBridge {
             }
         }
         
-        whenever(hueServiceMock.discoverBridge(any(), any())).thenAnswer {
+        whenever(hueServiceMock.discoverHueBridge(any(), any())).thenAnswer {
             callback.onError()
         }
         

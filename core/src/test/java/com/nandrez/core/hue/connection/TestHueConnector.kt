@@ -37,7 +37,7 @@ class TestHueConnector {
         val deviceName = "testDevice"
         val callback = mock<HueService.DiscoverHueBridgeCallback>()
     
-        testee.discoverBridge(deviceName, callback)
+        testee.discoverHueBridge(deviceName, callback)
     
         Assert.assertTrue(deviceName == hueSdk.deviceName)
         Assert.assertTrue("HueMan" == hueSdk.appName)

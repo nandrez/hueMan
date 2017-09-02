@@ -10,7 +10,7 @@ import com.philips.lighting.model.PHBridge
 
 internal class HueConnector(private val phHue: PHHueSDK = PHHueSDK.getInstance()) : HueService {
     
-    override fun discoverBridge(deviceName: String, callback: HueService.DiscoverHueBridgeCallback) {
+    override fun discoverHueBridge(deviceName: String, callback: HueService.DiscoverHueBridgeCallback) {
         phHue.appName = "HueMan"
         phHue.deviceName = deviceName
         phHue.registerListener(object : BridgeDiscoveryListener() {

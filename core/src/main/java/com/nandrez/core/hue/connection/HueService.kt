@@ -5,7 +5,7 @@ package com.nandrez.core.hue.connection
 
 internal interface HueService {
     
-    fun discoverBridge(deviceName: String, callback: DiscoverHueBridgeCallback)
+    fun discoverHueBridge(deviceName: String, callback: DiscoverHueBridgeCallback)
     
     interface DiscoverHueBridgeCallback {
         fun onAccessPointsDiscovered(hueBridges: List<HueBridge>)

@@ -13,10 +13,10 @@ class DiscoverHueBridge internal constructor(
 
 ) : UseCase<DiscoverHueBridge.Request, DiscoverHueBridge.Response>() {
     
-    public constructor() : this(HueConnector())
+    constructor() : this(HueConnector())
     
     override fun executeUseCase(request: Request, callback: Callback<Response>) {
-        hueConnector.discoverBridge(request.deviceName, object : HueService.DiscoverHueBridgeCallback {
+        hueConnector.discoverHueBridge(request.deviceName, object : HueService.DiscoverHueBridgeCallback {
             
             override fun onAccessPointsDiscovered(hueBridges: List<HueBridge>) {
                 val response = Response(hueBridges)
