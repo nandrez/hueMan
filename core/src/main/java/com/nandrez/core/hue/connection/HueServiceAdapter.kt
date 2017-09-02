@@ -11,15 +11,21 @@ import com.philips.lighting.model.PHHueParsingError
 internal sealed class HueServiceAdapter : PHSDKListener {
     override fun onAccessPointsFound(phAccessPoints: MutableList<PHAccessPoint>) { }
     override fun onError(errorCode: Int, errorMessage: String) { }
-    override fun onAuthenticationRequired(result: PHAccessPoint) { }
-    override fun onConnectionResumed(result: PHBridge) { }
-    override fun onBridgeConnected(result: PHBridge, user: String) { }
-    override fun onParsingErrors(result: MutableList<PHHueParsingError>) { }
-    override fun onConnectionLost(result: PHAccessPoint) { }
+    override fun onAuthenticationRequired(accessPoint: PHAccessPoint) { }
+    override fun onConnectionResumed(bridge: PHBridge) { }
+    override fun onBridgeConnected(bridge: PHBridge, authToken: String) { }
+    override fun onParsingErrors(parsingErrors: MutableList<PHHueParsingError>) { }
+    override fun onConnectionLost(accessPoint: PHAccessPoint) { }
     override fun onCacheUpdated(result: MutableList<Int>, bridge: PHBridge) { }
 }
 
 internal abstract class BridgeDiscoveryListener : HueServiceAdapter() {
     override abstract fun onAccessPointsFound(phAccessPoints: MutableList<PHAccessPoint>)
+    override abstract fun onError(errorCode: Int, errorMessage: String)
+}
+
+internal abstract class BridgePairingListener : HueServiceAdapter() {
+    override abstract fun onAuthenticationRequired(accessPoint: PHAccessPoint)
+    override abstract fun onBridgeConnected(bridge: PHBridge, authToken: String)
     override abstract fun onError(errorCode: Int, errorMessage: String)
 }

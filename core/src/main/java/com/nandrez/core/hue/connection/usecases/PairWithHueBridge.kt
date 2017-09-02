@@ -8,16 +8,18 @@ import com.nandrez.core.hue.connection.HueConnector
 import com.nandrez.core.hue.connection.HueService
 import com.nandrez.core.lib.UseCase
 
-class PairWithHueBridge internal constructor(private val hueConnector: HueService)
-    : UseCase<PairWithHueBridge.Request, PairWithHueBridge.Response>() {
+class PairWithHueBridge internal constructor(
+    private val hueConnector: HueService
+
+) : UseCase<PairWithHueBridge.Request, PairWithHueBridge.Response>() {
     
-    public constructor() : this(HueConnector())
+    constructor() : this(HueConnector())
     
     override fun executeUseCase(request: Request, callback: Callback<Response>) {
         hueConnector.pairWithHueBridge(request.hueBridge, object : HueService.PairWithHueBridgeCallback {
             
-            override fun onConnectionEstablished(token: String) {
-                val response = Response(token)
+            override fun onConnectionEstablished(authToken: String) {
+                val response = Response(authToken)
                 callback.onSuccess(response)
             }
     
