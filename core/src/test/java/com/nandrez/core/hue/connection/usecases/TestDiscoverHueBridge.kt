@@ -53,7 +53,7 @@ class TestDiscoverHueBridge {
                 throw AssertionError("Unexpected CallBack-call")
             }
             override fun onError() {
-                isCalled = true;
+                isCalled = true
             }
         }
         
