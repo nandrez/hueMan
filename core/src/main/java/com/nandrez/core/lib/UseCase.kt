@@ -6,14 +6,12 @@ package com.nandrez.core.lib
 /**
  * This class represents a specific interaction with the application's network- and/or server-layers
  */
-abstract class UseCase<Q : UseCase.Request, R : UseCase.Response>() {
+abstract class UseCase<in Q : UseCase.Request,  out R : UseCase.Response>() {
     
     /**
      * Executes the UseCase with the given request-values.
      */
-    internal fun run(request: Q, callback: Callback<R>) {
-        executeUseCase(request, callback)
-    }
+    internal fun run(request: Q, callback: Callback<R>) = executeUseCase(request, callback)
     
     protected abstract fun executeUseCase(request: Q, callback: Callback<R>)
     
