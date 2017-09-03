@@ -4,8 +4,6 @@
 package com.nandrez.core.hue.connection
 
 import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.times
-import com.nhaarman.mockito_kotlin.verify
 import com.philips.lighting.hue.sdk.PHAccessPoint
 import com.philips.lighting.hue.sdk.PHHueSDK
 import com.philips.lighting.hue.sdk.bridge.impl.PHBridgeImpl
@@ -33,21 +31,56 @@ class TestHueConnector {
     }
     
     @Test
-    fun discoverBridge() {
+    fun discoverHueBridge_success() {
         val deviceName = "testDevice"
-        val callback = mock<HueService.DiscoverHueBridgeCallback>()
+        val phAccessPoint = PHAccessPoint("1.3.3.7", "testUser", "any")
+        phAccessPoint.bridgeId = "testBridge"
+        val callback = object: HueService.DiscoverHueBridgeCallback {
+            var isCalled = false
+            
+            override fun onAccessPointsDiscovered(hueBridges: List<HueBridge>) {
+                Assert.assertTrue(hueBridges.size == 1)
+                val ap = hueBridges[0].phAccessPoint
+                Assert.assertTrue(ap.bridgeId.toLowerCase() == phAccessPoint.bridgeId.toLowerCase())
+                Assert.assertTrue(ap.ipAddress.toLowerCase() == phAccessPoint.ipAddress.toLowerCase())
+                Assert.assertTrue(ap.macAddress.toLowerCase() == phAccessPoint.macAddress.toLowerCase())
+                Assert.assertTrue(ap.username.toLowerCase() == phAccessPoint.username.toLowerCase())
+                isCalled = true
+            }
+    
+            override fun onFailedDiscovery() = throw AssertionError("Unexpected call!")
+        }
     
         testee.discoverHueBridge(deviceName, callback)
     
         Assert.assertTrue(deviceName == hueSdk.deviceName)
         Assert.assertTrue("HueMan" == hueSdk.appName)
+        hueSdk.fakeDiscovery(phAccessPoint)
+        Assert.assertTrue(callback.isCalled)
         
-        val phAccessPoints = listOf(PHAccessPoint("1.3.3.7", "testUser", "any"))
-        hueSdk.fakeDiscovery(phAccessPoints)
-        verify(callback, times(1)).onAccessPointsDiscovered(phAccessPoints.map { HueBridge(it) })
+    }
+    
+    @Test
+    fun discoverHueBridge_failure() {
+        val deviceName = "testDevice"
+        val callback = object: HueService.DiscoverHueBridgeCallback {
+            var isCalled = false
+            
+            override fun onFailedDiscovery() {
+                isCalled = true
+            }
+            
+            override fun onAccessPointsDiscovered(hueBridges: List<HueBridge>) {
+                throw AssertionError("Unexpected call!")
+            }
+        }
         
+        testee.discoverHueBridge(deviceName, callback)
+        
+        Assert.assertTrue(deviceName == hueSdk.deviceName)
+        Assert.assertTrue("HueMan" == hueSdk.appName)
         hueSdk.fakeError()
-        verify(callback, times(1)).onFailedDiscovery()
+        Assert.assertTrue(callback.isCalled)
     }
     
     @Test
@@ -67,15 +100,15 @@ class TestHueConnector {
         }
         
         testee.pairWithHueBridge(bridge, pairingCallback)
-        hueSdk.fakeConnection(phBridge, bridge.authToken)
         
+        hueSdk.fakeConnection(phBridge, bridge.authToken)
         Assert.assertTrue(pairingCallback.isCalled)
         
     }
     
     @Test
     fun pairWithBridge_error() {
-        val bridge = HueBridge("testBridge", "1.3.3.7", "any", "token")
+        val bridge = HueBridge("testBridge".toUpperCase(), "1.3.3.7", "any", "token")
         val pairingCallback = object : HueService.PairWithHueBridgeCallback {
             var isCalled = false
     
@@ -87,14 +120,14 @@ class TestHueConnector {
         }
         
         testee.pairWithHueBridge(bridge, pairingCallback)
-        hueSdk.fakeError()
         
+        hueSdk.fakeError()
         Assert.assertTrue(pairingCallback.isCalled)
         
     }
     
-    private fun PHHueSDK.fakeDiscovery(phAccessPoints: List<PHAccessPoint>) {
-        (notificationManager as PHNotificationManagerImpl).notifyBridgeSearchResult(phAccessPoints)
+    private fun PHHueSDK.fakeDiscovery(phAccessPoint: PHAccessPoint) {
+        (notificationManager as PHNotificationManagerImpl).notifyBridgeSearchResult(listOf(phAccessPoint))
     }
     
     private fun PHHueSDK.fakeError() {
