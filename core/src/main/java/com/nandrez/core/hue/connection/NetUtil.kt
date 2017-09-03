@@ -15,14 +15,20 @@ data class HueBridge(
     val authToken: String
 ) {
     
-    internal val phAccessPoint: PHAccessPoint
-        get() = PHAccessPoint(ipAddress, authToken, macAddress)
-    
-    internal constructor(phAccessPoint: PHAccessPoint) : this(
-            phAccessPoint.ipAddress,
-            phAccessPoint.bridgeId,
-            phAccessPoint.macAddress,
-            phAccessPoint.username
+    internal constructor(phAccessPoint: PHAccessPoint): this(
+            phAccessPoint.bridgeId ?: "",
+            phAccessPoint.ipAddress ?: "",
+            phAccessPoint.macAddress ?: "",
+            phAccessPoint.username ?: ""
     )
+    
+    internal val phAccessPoint: PHAccessPoint get() {
+        val ap = PHAccessPoint()
+        ap.bridgeId = bridgeName
+        ap.ipAddress = ipAddress
+        ap.macAddress = macAddress
+        ap.username = authToken
+        return ap
+    }
     
 }
