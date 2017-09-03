@@ -5,6 +5,7 @@ package com.nandrez.hueman.lights;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +15,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.nandrez.hueman.R;
 import com.nandrez.hueman.data.Dimmable;
 import com.nandrez.hueman.data.Hueable;
@@ -73,6 +73,11 @@ public class LightsFragment extends Fragment implements LightsContract.View {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         presenter.result(requestCode, resultCode);
+    }
+    
+    @Override
+    public LightsContract.Presenter getPresenter() {
+        return presenter;
     }
     
     @Override
