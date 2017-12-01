@@ -6,7 +6,7 @@ package com.nandrez.core.lib
 /**
  * This class represents a specific interaction with the application's network- and/or server-layers
  */
-abstract class UseCase<in Q : UseCase.Request,  out R : UseCase.Response>() {
+abstract class UseCase<in Q : UseCase.Request,  out R : UseCase.Response> {
     
     /**
      * Executes the UseCase with the given request-values.

@@ -17,7 +17,7 @@ class TestDiscoverHueBridge {
     
     @Before
     fun setup() {
-        hueServiceMock = mock<HueService>()
+        hueServiceMock = mock()
         testee = DiscoverHueBridge(hueServiceMock)
     }
     

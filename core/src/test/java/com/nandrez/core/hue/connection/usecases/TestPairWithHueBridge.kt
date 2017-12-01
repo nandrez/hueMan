@@ -20,7 +20,7 @@ class TestPairWithHueBridge {
     
     @Before
     fun setUp() {
-        hueServiceMock = mock<HueService>()
+        hueServiceMock = mock()
         testee = PairWithHueBridge(hueServiceMock)
     }
     
@@ -56,7 +56,7 @@ class TestPairWithHueBridge {
                 throw AssertionError("Unexpected CallBack-call")
             }
             override fun onError() {
-                isCalled = true;
+                isCalled = true
             }
         }
         
