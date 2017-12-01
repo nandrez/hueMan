@@ -5,8 +5,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:+"
-    testImplementation 'junit:junit:4.12'
+    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:$mockito_kotlin_version"
+    testImplementation "junit:junit:$junit_version"
 }
 
 sourceCompatibility = 1.7
@@ -19,14 +19,13 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
-repositories {
-    mavenCentral()
-}
+
 compileKotlin {
     kotlinOptions {
         jvmTarget = 1.6
     }
 }
+
 compileTestKotlin {
     kotlinOptions {
         jvmTarget = 1.6
